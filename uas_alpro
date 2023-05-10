@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define NAMA_FILE "data.txt"
+
+struct Buku
+{
+    char judul[50];
+    char pengarang[50];
+    char penerbit[50];
+    int tahun_terbit;
+    int pinjam;
+};
+
+int main(int argc, char const *argv[])
+{
+    FILE *file;
+    file = fopen(NAMA_FILE, "r");
+    struct Buku buku[100];
+    load_file(file, buku, sizeof(buku) / sizeof(struct Buku));
+    while (1)
+    {
+        pilihan_fitur();
+        int pilihan;
+        printf(": ");
+        scanf("%d", &pilihan);
+        scanf("%*c");
+
+        int size = sizeof(buku) / sizeof(struct Buku);
+        switch (pilihan)
+        {
+        case 1:
+            // cari buku
+            cari_buku_berdasarkan_nama(buku, size);
+            break;
+        case 2:
+            // tambah buku_tmp
+            tambah_data(buku, size);
+            break;
+        case 3:
+            // pinjam buku
+            pinjam_buku_berdasarkan_nama(buku, size);
+            break;
+        case 4:
+            // mengembalikan buku
+            kembalikan_buku_berdasarkan_nama(buku, size);
+            break;
+        case 5:
+            // simpan perubahan
+            file = fopen(NAMA_FILE, "w");
+            write_data(file, buku, size);
+            break;
+        default:
+            return 0;
+            break;
+        }
+        printf("\n\n");
+    }
+    return 0;
+}
