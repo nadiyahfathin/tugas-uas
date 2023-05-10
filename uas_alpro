@@ -53,6 +53,41 @@ check_open(file);
     fclose(file);
 }
 
+void tambah_data(struct Buku *buku, int size)
+{
+    printf("\nTAMBAH BUKU---------------------------------\n");
+    int jumlah_data;
+    printf("masukkan jumlah Data :");
+    scanf("%d", &jumlah_data);
+    scanf("%*c");
+    fflush(stdin);
+
+    for (int i = 1; i <= jumlah_data; i++)
+    {
+        fflush(stdin);
+        printf("\nDATA (%d)\n", i);
+        struct Buku buku_baru;
+        buku_baru.pinjam = 0;
+
+        printf("Masukkan judul      :");
+        scanf("%[^\n]%*c", buku_baru.judul);
+        fflush(stdin);
+
+        printf("Masukkan pengarang  :");
+        scanf("%[^\n]%*c", buku_baru.pengarang);
+
+        printf("Masukkan penerbit   :");
+        scanf("%[^\n]%*c", buku_baru.penerbit);
+
+        printf("Masukkan tahun terbit  :");
+        scanf("%d%*c", &buku_baru.tahun_terbit);
+
+        int ekor = check_index_terakhir_terisi(buku, size);
+
+        buku[ekor] = buku_baru;
+    }
+}
+
 void pilihan_fitur()
 {
     printf("FITUR APLIKASI------------------------------\n");
