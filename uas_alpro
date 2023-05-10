@@ -88,6 +88,33 @@ void tambah_data(struct Buku *buku, int size)
     }
 }
 
+void cari_buku_berdasarkan_nama(struct Buku *buku, int size)
+{
+    printf("\nPENCARIAN BUKU------------------------------\n");
+    struct Buku buku_didapat;
+    char nama[50];
+    printf("Judul Buku :");
+    scanf("%49[^\n]", nama);
+
+    for (int i = 0; i < size; i++)
+    {
+        buku_didapat = buku[i];
+        if (strcmp(buku_didapat.judul, nama) == 0)
+        {
+            printf("\nData---------------------------------------+\n");
+            buku_didapat = buku[i];
+            printf("judul buku\t:%s\n", buku_didapat.judul);
+            printf("pengarang\t:%s\n", buku_didapat.pengarang);
+            printf("penerbit\t:%s\n", buku_didapat.penerbit);
+            printf("tahun terbit\t:%d\n", buku_didapat.tahun_terbit);
+            printf("status \t\t:%s\n", buku_didapat.pinjam ? "dipinjam" : "tidak dipinjam");
+            return;
+        }
+    }
+
+    printf("Tidak ditemukan buku dengan judul \"%s\"\n", nama);
+}
+
 void pilihan_fitur()
 {
     printf("FITUR APLIKASI------------------------------\n");
