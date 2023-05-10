@@ -53,6 +53,17 @@ check_open(file);
     fclose(file);
 }
 
+void pilihan_fitur()
+{
+    printf("FITUR APLIKASI------------------------------\n");
+    printf("[1] cari buku\n");
+    printf("[2] tambah Buku\n");
+    printf("[3] pinjam buku\n");
+    printf("[4] kembalikan buku\n");
+    printf("[5] simpan perubahan\n");
+    printf("[6] keluar\n");
+}
+
 int main(int argc, char const *argv[])
 {
     FILE *file;
