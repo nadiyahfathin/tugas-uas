@@ -141,6 +141,32 @@ void pinjam_buku_berdasarkan_nama(struct Buku *buku, int array_size)
     printf("Tidak ditemukan buku dengan judul \"%s\"\n", nama);
 }
 
+void kembalikan_buku_berdasarkan_nama(struct Buku *buku, int array_size)
+{
+    printf("\nPENGEMBALIAN BUKU---------------------------\n");
+    printf("masukkan judul: ");
+    char nama[50];
+    scanf("%49[^\n]", nama);
+
+    for (int i = 0; i < array_size; i++)
+    {
+        struct Buku buku_tmp;
+        buku_tmp = buku[i];
+        if (strcmp(buku_tmp.judul, nama) == 0)
+        {
+            if (buku_tmp.pinjam == 1)
+            {
+                buku[i].pinjam = 0;
+                printf("Buku berhasil dikembalikan\n");
+                return;
+            }
+            printf("Buku tidak terdaftar sebagai buku yang dipinjamkan\n");
+            return;
+        }
+    }
+    printf("Tidak ditemukan buku dengan judul \"%s\"\n", nama);
+}
+
 void pilihan_fitur()
 {
     printf("FITUR APLIKASI------------------------------\n");
